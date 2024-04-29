@@ -1,33 +1,40 @@
 package hiroshi.VisitorProblem;
+
 import java.util.Iterator;
 import java.util.ArrayList;
 
 public class Directory extends Entry {
-    private String name;                    
-    private ArrayList dir = new ArrayList();   
-    public Directory(String name) {         
+    private String name;
+    private ArrayList dir = new ArrayList();
+
+    public Directory(String name) {
         this.name = name;
     }
-    public String getName() {               
+
+    public String getName() {
         return name;
     }
-    public int getSize() {                  
+
+    public int getSize() {
         int size = 0;
         Iterator it = dir.iterator();
         while (it.hasNext()) {
-            Entry entry = (Entry)it.next();
+            Entry entry = (Entry) it.next();
             size += entry.getSize();
         }
         return size;
     }
-    public Entry add(Entry entry) {        
+
+    public Entry add(Entry entry) {
         dir.add(entry);
         return this;
     }
-    public Iterator iterator() {             
+
+    public Iterator iterator() {
         return dir.iterator();
     }
-    public void accept(Visitor v) {         // ¹æ¹®ÀÚ ½Â³«
-        v.visit(this);              
-    }                           
+
+    public void accept(Visitor v) { // ï¿½æ¹®ï¿½ï¿½ ï¿½Â³ï¿½
+        v.visit(this);
+    }
 }
