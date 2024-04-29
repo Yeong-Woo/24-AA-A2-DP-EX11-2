@@ -29,6 +29,7 @@ public class Main {
             Park.add(new File("game.doc", 400));
             Park.add(new File("junk.mail", 500));
             rootdir.accept(new ListVisitor());
+            rootdir.accept(new FileFindVisitor("html"));
         } catch (FileTreatmentException e) {
             e.printStackTrace();
         }
