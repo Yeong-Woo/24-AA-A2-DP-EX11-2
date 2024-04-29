@@ -1,5 +1,7 @@
 package hiroshi.VisitorProblem;
 
+import java.util.Iterator;
+
 public class Main {
     public static void main(String[] args) {
         try {
@@ -29,7 +31,15 @@ public class Main {
             Park.add(new File("game.doc", 400));
             Park.add(new File("junk.mail", 500));
             rootdir.accept(new ListVisitor());
-            rootdir.accept(new FileFindVisitor("html"));
+
+            FileFindVisitor findVisitor = new FileFindVisitor("html");
+            rootdir.accept(findVisitor);
+            Iterator it = findVisitor.getFoundIterator();
+            while (it.hasNext()) {
+                File file = (File) it.next();
+                System.out.println(file.toString());
+            }
+
         } catch (FileTreatmentException e) {
             e.printStackTrace();
         }
